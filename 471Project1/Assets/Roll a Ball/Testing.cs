@@ -27,24 +27,5 @@ public class Testing : MonoBehaviour
             
         }
         t.Translate(0, speed, 0);
-        
-        //rotation = rotation + 0.001f;
-        //t.Rotate(rotation,0,0);
-
-
-        
-        /*if(score <= 100)
-        {
-            score++;
-            if(score%10 == 0)
-            {
-                print(score);
-            }
-        }
-        else if (score >= 100)
-        {
-            print("You Win!!!");
-            Destroy(cube);
-        }*/
     }
 }
