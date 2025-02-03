@@ -4,7 +4,7 @@ using UnityEngine;
 public class BlockSpawner : MonoBehaviour
 {
     public GameObject prefab; // Assign in the Inspector
-    public int minSpawn = 10; 
+    public int minSpawn = 50; 
     public int maxSpawn = 100;
     public float spawnDuration = 120f; // 2 minutes
     public Vector3 spawnAreaSize = new Vector3(10f, 5f, 10f); // Define area in Inspector
@@ -39,21 +39,16 @@ public class BlockSpawner : MonoBehaviour
         GameObject obj = Instantiate(prefab, randomPosition, Quaternion.identity);
 
         // Randomize Size
-        float randomScale = Random.Range(0.5f, 3f);
+        float randomScale = Random.Range(0.5f, 20f);
         obj.transform.localScale = Vector3.one * randomScale;
 
-        // Randomize Mass (if Rigidbody exists)
+        // Randomize Mass
         Rigidbody rb = obj.GetComponent<Rigidbody>();
-        if (rb != null)
-        {
-            rb.mass = Random.Range(0.5f, 10f);
-        }
+        rb.mass = Random.Range(0.5f, 10f);
 
-        // Randomize Color (if Renderer exists)
+        // Randomize Color
         Renderer renderer = obj.GetComponent<Renderer>();
-        if (renderer != null)
-        {
-            renderer.material.color = new Color(Random.value, Random.value, Random.value);
-        }
+        renderer.material.color = new Color(Random.value, Random.value, Random.value);
+        
     }
 }

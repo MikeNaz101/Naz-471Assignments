@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7400342168128547370}
   - component: {fileID: -4883122752758137526}
   - component: {fileID: -5465602150715073276}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cubey
   m_TagString: Untagged
   m_Icon: {fileID: 0}

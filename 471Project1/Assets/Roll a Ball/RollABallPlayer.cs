@@ -1,3 +1,4 @@
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -9,12 +10,14 @@ public class RollABallPlayer : MonoBehaviour
     bool isNearGround;
     Vector2 m;
     Rigidbody rb;
-    public Transform cameraPos;
+    public Transform cameraPos; // This helps the player's input be relative to where the camera is facing.
     public float speed = 10f; 
     public float maxSpeed = 50f;
     public float groundCheckDistance = 0.1f;
     public float nearGroundDistance = 0.75f;
 
+    public float detectionRadius = 5f; // How far to check for enemies
+    public LayerMask enemyLayer; // To find the "enemyies" when I explode.
 
 
     void Start()
@@ -43,6 +46,10 @@ public class RollABallPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Keyboard.current.eKey.wasPressedThisFrame) // Change "e" to whatever key you want
+        {
+            CheckForEnemies();
+        }
         CheckIfGrounded();
 
         if (isGrounded && Input.GetButtonDown("Jump"))
@@ -83,6 +90,27 @@ public class RollABallPlayer : MonoBehaviour
     void OnMove(InputValue movement)
     {
         m = movement.Get<Vector2>(); 
+    }
+    // Uses a OverlapSphere to detect if enemies are within range of ball/player.
+    void CheckForEnemies()
+    {
+        float randomExplosivePower = UnityEngine.Random.Range(50f, 500f);
+        // This creates a list of confirmed enemies found within the set sphere.
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, detectionRadius, enemyLayer);
+
+        if (hitColliders.Length > 0)
+        {
+            Debug.Log("Enemies detected: " + hitColliders.Length);
+            foreach (Collider enemy in hitColliders)
+            {
+                Debug.Log("Enemy in range: " + enemy.name);
+                enemy.GetComponent<Rigidbody>().AddExplosionForce(randomExplosivePower, transform.position,10f,2.5f,ForceMode.Impulse);
+            }
+        }
+        else
+        {
+            Debug.Log("No enemies in range.");
+        }
     }
 
     void CheckIfGrounded()
