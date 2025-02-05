@@ -16,7 +16,7 @@ public class Testing : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // if(transform.position.y > 10)
+        //if(transform.position.y > 10)
         if (transform.position.y < -10)
         {
             t.transform.position = new Vector3(0f,50f,0f);
