@@ -1,56 +1,56 @@
-using UnityEditor.SceneTemplate;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SocialPlatforms;
+
 public class FirstPersonController : MonoBehaviour
 {
+    [SerializeField] float speed = 2.0f;
+    [SerializeField] float mouseSensitivity = 100f;
+    [SerializeField] GameObject cam;
+    [SerializeField] GameObject bullet;
+    [SerializeField] GameObject bulletSpawner;
+
     Vector2 movement;
     Vector2 mouseMovement;
-    Vector2 look;
-    CharacterController controller;
-    float cameraUpRotaion = 0;
-    [SerializeField]
-    float speed = 2.0f;
-    float mouseSensitivity = 10f;
-    public GameObject cam;
-    [SerializeField]
-    GameObject bullet;
-    GameObject BulletSpawner;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    CharacterController chara;
+    float cameraUpRotation = 0f;
+
     void Start()
     {
-        controller = GetComponent<CharacterController>();
+        Cursor.lockState = CursorLockMode.Locked;
+        chara = GetComponent<CharacterController>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        float lookX = mouseMovement.x * Time.deltaTime * mouseSensitivity;
-        float lookY = mouseMovement.y * Time.deltaTime * mouseSensitivity;
-        
-        cameraUpRotaion -= lookY;
-        cam.transform.localRotation = Quaternion.Euler(cameraUpRotaion,0,0);
-        
-        float moveX = movement.x * Time.deltaTime * mouseSensitivity;
-        float moveZ = movement.y * Time.deltaTime * mouseSensitivity;
+        // Camera rotation
+        float mouseX = mouseMovement.x * Time.deltaTime * mouseSensitivity / 10;
+        float mouseY = mouseMovement.y * Time.deltaTime * mouseSensitivity / 10;
 
-        //Vector3 actual_movement = new Vector3(moveX, 0, moveZ);
-        
-        transform.Rotate(Vector3.up * lookX);
+        cameraUpRotation -= mouseY;
+        cameraUpRotation = Mathf.Clamp(cameraUpRotation, -90f, 90f);
 
-        Vector3 actual_movement = (transform.forward * moveZ + transform.right * moveX);
-        controller.Move(actual_movement * Time.deltaTime * speed);
+        cam.transform.localRotation = Quaternion.Euler(cameraUpRotation, 0, 0);
+        transform.Rotate(Vector3.up * mouseX);
+
+        // Movement
+        Vector3 move = transform.right * movement.x + transform.forward * movement.y;
+        chara.SimpleMove(move * speed);
     }
+
     void OnMove(InputValue moveVal)
     {
         movement = moveVal.Get<Vector2>();
     }
+
     void OnLook(InputValue lookVal)
     {
         mouseMovement = lookVal.Get<Vector2>();
     }
-    void onAttack()
+
+    void OnAttack(InputValue fireVal)
     {
-        //Instantiate(bullet, BulletSpawner.transform.rotation,
+        GameObject newBullet = Instantiate(bullet, bulletSpawner.transform.position, bulletSpawner.transform.rotation);
+        Rigidbody rb = newBullet.GetComponent<Rigidbody>();
+        rb.AddForce(bulletSpawner.transform.forward * 20f, ForceMode.Impulse);
     }
 }
