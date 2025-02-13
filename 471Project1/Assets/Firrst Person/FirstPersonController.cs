@@ -34,7 +34,10 @@ public class FirstPersonController : MonoBehaviour
 
         // Movement
         Vector3 move = transform.right * movement.x + transform.forward * movement.y;
+        //Vector3 actual_movement = transform.right * movement.x + transform.forward * movement.y;
         chara.SimpleMove(move * speed);
+
+        
     }
 
     void OnMove(InputValue moveVal)
