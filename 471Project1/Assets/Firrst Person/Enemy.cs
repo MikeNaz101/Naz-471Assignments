@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] int health = 2;
+    [SerializeField] int health = 10;
     [SerializeField] GameObject explosionEffect;
     [SerializeField] AudioClip explosionSound;
+    [SerializeField] EnemyController self;
     [SerializeField] float explosionRadius = 75f;
     [SerializeField] float explosionForce = 750f;
 
@@ -12,6 +13,7 @@ public class Enemy : MonoBehaviour
     {
         if (other.GetComponent<Bullet>() != null)
         {
+            self.TakeDamage(1);
             health -= 1;
             Destroy(other.gameObject);
 

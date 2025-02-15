@@ -47,6 +47,8 @@ GameObject:
   - component: {fileID: 3208965793813681839}
   - component: {fileID: 8139503186247121681}
   - component: {fileID: 2393852732477375152}
+  - component: {fileID: 7756125557016800827}
+  - component: {fileID: 4257460765121425425}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -138,8 +140,8 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -161,6 +163,53 @@ MonoBehaviour:
   route:
   - {fileID: 6257402000184221729}
   - {fileID: 7741062202761796163}
+  bullet: {fileID: 3120459587265350189, guid: f97505c715ca0674da3d356da99fd76c, type: 3}
+  bulletSpawner: {fileID: 6668005695910323392}
+--- !u!54 &7756125557016800827
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5245346105424187519}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 4
+  m_CollisionDetection: 0
+--- !u!114 &4257460765121425425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5245346105424187519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75b1bdf9fe25d3948ab590b6ef6f5551, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 10
+  explosionEffect: {fileID: 4618493902147699554, guid: 4d64465fc495e3e4aa682479f7577057, type: 3}
+  explosionSound: {fileID: 8300000, guid: 4002b08cb8f5db340872454ca43597a3, type: 3}
+  self: {fileID: 2393852732477375152}
+  explosionRadius: 75
+  explosionForce: 750
 --- !u!1 &6257402000184221729
 GameObject:
   m_ObjectHideFlags: 0
