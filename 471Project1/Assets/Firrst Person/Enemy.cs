@@ -6,8 +6,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] GameObject explosionEffect;
     [SerializeField] AudioClip explosionSound;
     [SerializeField] EnemyController self;
-    [SerializeField] float explosionRadius = 75f;
-    [SerializeField] float explosionForce = 750f;
+    [SerializeField] float explosionRadius = 20f;
+    [SerializeField] float explosionForce = 75f;
 
     void OnTriggerEnter(Collider other)
     {

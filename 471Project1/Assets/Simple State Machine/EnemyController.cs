@@ -98,10 +98,11 @@ public class EnemyController : MonoBehaviour
 
     void OnMelee()
     {
+        Rigidbody targetRb = target.GetComponent<Rigidbody>();
         enemyRenderer.material.color = Color.black;
         print("Melee Attack!");
         // Apply force to the player (Assume Rigidbody on player)
-        target.GetComponent<Rigidbody>()?.AddForce(transform.forward * 5f, ForceMode.Impulse);
+        targetRb.GetComponent<Rigidbody>()?.AddForce(transform.forward * 5f, ForceMode.Impulse);
         GameObject obstacle = CheckForward();
         if (obstacle == null)
         {

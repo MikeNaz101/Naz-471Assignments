@@ -5,7 +5,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private GameObject enemyPrefab; // Assign your enemy prefab in the Inspector
     [SerializeField] private int minEnemies = 3;
     [SerializeField] private int maxEnemies = 10;
-    [SerializeField] private Vector3 spawnArea = new Vector3(10f, 1f, 10f); // Defines the area where enemies spawn
+    [SerializeField] private Vector3 spawnArea = new Vector3(10f, 5f, 10f); // Defines the area where enemies spawn
 
     private void Start()
     {
