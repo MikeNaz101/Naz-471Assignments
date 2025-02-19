@@ -140,8 +140,8 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 1
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -163,6 +163,7 @@ MonoBehaviour:
   route:
   - {fileID: 6257402000184221729}
   - {fileID: 7741062202761796163}
+  player: {fileID: 8812646654137280720, guid: 8f2dcfe5a848b114b839c1c95ae81df3, type: 3}
   bullet: {fileID: 3120459587265350189, guid: f97505c715ca0674da3d356da99fd76c, type: 3}
   bulletSpawner: {fileID: 6668005695910323392}
 --- !u!54 &7756125557016800827
@@ -190,7 +191,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 116
+  m_Constraints: 32
   m_CollisionDetection: 0
 --- !u!114 &4257460765121425425
 MonoBehaviour:

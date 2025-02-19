@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Firrst Person/FPS.unity
-    guid: 9a1596557938af04fa4ffbc99fa1b774
+    path: Assets/Simple State Machine/EnemyStateMachine.unity
+    guid: 690d0b7baffe3ee47b6f19e7ba3c6c47
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

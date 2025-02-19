@@ -287,7 +287,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 753450496706454663, guid: f250abf4d27de6e4eb95e740e607acad, type: 3}
   minEnemies: 3
   maxEnemies: 10
-  spawnArea: {x: 10, y: 1, z: 10}
+  spawnArea: {x: 25, y: 1, z: 25}
 --- !u!1 &1161972006
 GameObject:
   m_ObjectHideFlags: 0

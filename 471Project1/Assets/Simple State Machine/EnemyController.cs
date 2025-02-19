@@ -17,6 +17,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     GameObject[] route;
     GameObject target;
+    public FirstPersonController player;
     int routeIndex = 0;
     private State currentState = State.Pace;
     float speed = 2f;
@@ -114,9 +115,11 @@ public class EnemyController : MonoBehaviour
     void OnPanic()
     {
         enemyRenderer.material.color = Color.grey;
+        speed = 0.5f;
         print("I'm Panicking!");
         Vector3 awayFromPlayer = transform.position - target.transform.position;
         MoveTo(transform.position + awayFromPlayer.normalized * 5f);
+        Invoke("OnPace", 3f);
     }
 
     void OnConfusion()
@@ -138,7 +141,7 @@ public class EnemyController : MonoBehaviour
     {
         enemyRenderer.material.color = Color.red;
         print("I'm Hurt!");
-        Invoke("RecoverFromHurt", 1f);
+        Invoke("RecoverFromHurt", 2f);
     }
 
     void RecoverFromHurt()
