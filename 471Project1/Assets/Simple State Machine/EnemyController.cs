@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 public class EnemyController : MonoBehaviour
 {
+    Animator anim;
     private enum State
     {
         Pace,
@@ -17,7 +18,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     GameObject[] route;
     GameObject target;
-    public FirstPersonController player;
+    public PlayerStateManager player;
     int routeIndex = 0;
     private State currentState = State.Pace;
     float speed = 2f;
@@ -28,6 +29,7 @@ public class EnemyController : MonoBehaviour
 
     void Start()
     {
+        anim = GetComponent<Animator>();
         enemyRenderer = GetComponent<Renderer>();
     }
 
@@ -61,6 +63,7 @@ public class EnemyController : MonoBehaviour
 
     void OnPace()
     {
+        anim.SetBool("IsFollowing", false);
         enemyRenderer.material.color = Color.green;
         print("I'm Pacing!");
         target = route[routeIndex];
@@ -81,6 +84,7 @@ public class EnemyController : MonoBehaviour
 
     void OnFollow()
     {
+        anim.SetBool("IsFollowing", true);
         enemyRenderer.material.color = new Color(0.5f, 0, 0);
         print("I'm Following!");
         MoveTo(target);
